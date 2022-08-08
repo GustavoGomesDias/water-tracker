@@ -1,6 +1,7 @@
 package main
 
 import (
+	"changeme/backend"
 	"embed"
 
 	"github.com/wailsapp/wails/v2"
@@ -12,16 +13,18 @@ var assets embed.FS
 
 func main() {
 	// Create an instance of the app structure
-	app := NewApp()
+	app := backend.NewApp()
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:            "w-tracker",
+		Title:            "Water Tracker",
 		Width:            1024,
 		Height:           768,
 		Assets:           assets,
-		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		OnStartup:        app.startup,
+		BackgroundColour: &options.RGBA{R: 0, G: 32, B: 69, A: 1},
+		OnStartup:        app.OnStartup,
+
+		DisableResize: true,
 		Bind: []interface{}{
 			app,
 		},
