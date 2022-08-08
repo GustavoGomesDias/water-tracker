@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
-import water from '../../assets/images/water.gif';
+import  { OnClose } from '../../../wailsjs/go/backend/App';
 import './home.css';
 
 export function Home() {
+    const handleOnClose = (e: MouseEvent<HTMLButtonElement>) => {
+        console.log('clicked!');
+        e.preventDefault();
+    }
+
+
     return (
         <div id="App">
             {/* <img src={water} alt="" /> */}
@@ -16,6 +22,10 @@ export function Home() {
                         Página principal
                     </button>
                 </Link>
+
+                <button className="btn close" onClick={(e) => handleOnClose(e)}>
+                    Sair
+                </button>
             </div>
         </div>
     )

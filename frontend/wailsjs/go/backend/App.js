@@ -9,3 +9,7 @@ export function Greet(arg1) {
 export function Greet2(arg1) {
   return window['go']['backend']['App']['Greet2'](arg1);
 }
+
+export function OnClose(arg1) {
+  return window['go']['backend']['App']['OnClose'](arg1);
+}
