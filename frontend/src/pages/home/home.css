@@ -50,15 +50,3 @@
     box-shadow: 0 -100px #ed3b65 inset;
   }
 }
-
-@keyframes wave {
-  0% {
-    transform: translate(-50%) rotate(-180deg);
-
-  }
-
-
-  100% {
-    transform: translate(-50%) rotate(360deg);
-  }
-}

@@ -1,4 +1,74 @@
 .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
+}
+
+.tracker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.percent {
+  z-index: 10;
+  font-size: 2rem;
+  margin: -50px 0;
+}
+
+.glass {
+  transform: perspective(140px) rotateX(-40deg);
+  width: 100px;
+  height: 150px;
+  position: relative;
+  border: 2px solid #fff;
+  animation: load 1s linear alternate;
+  overflow: hidden;
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 130px;
+  background-color: #ed3b65;
+  top: var(--top);
+  left: 50%;
+  transform: translate(-50%);
+  animation: wave 5s infinite linear;
+  transition: all 1s;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* height: 50%; */
+}
+
+.options {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%) rotate(-180deg);
+
+  }
+
+
+  100% {
+    transform: translate(-50%) rotate(360deg);
+  }
 }

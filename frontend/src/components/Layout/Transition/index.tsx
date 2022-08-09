@@ -3,13 +3,6 @@ import './transition.css';
 
 export const Transition = (): JSX.Element => {
 
-  const handleOnCloseTransition = () => {
-    const transition = document.querySelector<HTMLDivElement>('.transition');
-    transition?.classList.add('displayNone');
-  }
-
-  setTimeout(() => handleOnCloseTransition(), 1000);
-
   return (
     <div className="transition">
       <div className="overlay">

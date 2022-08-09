@@ -81,3 +81,16 @@
 .btn:hover:before {
   top: 15px;
 }
+
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%) rotate(-180deg);
+
+  }
+
+
+  100% {
+    transform: translate(-50%) rotate(360deg);
+  }
+}
