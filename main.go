@@ -23,8 +23,8 @@ func main() {
 		Assets:           assets,
 		BackgroundColour: &options.RGBA{R: 0, G: 32, B: 69, A: 1},
 		OnStartup:        app.OnStartup,
-
-		DisableResize: true,
+		OnShutdown:       app.OnClose,
+		DisableResize:    true,
 		Bind: []interface{}{
 			app,
 		},

@@ -1,0 +1,57 @@
+.logo {
+  font-family: 'Yanone', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 900;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0px;
+  width: 100%;
+  height: 500px;
+  color: #fff;
+  background-color: transparent;
+  mix-blend-mode: hard-light;
+  overflow: hidden;
+  transform: rotateX(-45deg);
+}
+
+@keyframes showBottom {
+  to {
+    margin-top: 0;
+  }
+
+  from {
+    margin-top: -1500px;
+  }
+}
+
+.logo .heart {
+  display: inline-block;
+  color: red;
+  animation: wave-text 1s ease-in-out infinite;
+}
+
+.logo span:nth-of-type(11){ animation-delay: 11ms; }
+
+@keyframes showBottom {
+  to {
+    margin-top: 0;
+  }
+
+  from {
+    margin-top: -1500px;
+  }
+}
+
+@keyframes wave-text{
+  00%{
+    transform: translateY(0em);
+  }
+  60%{
+    transform: translateY(-0.6em);
+  }
+  100%{
+    transform: translateY(0em);
+  }
+}

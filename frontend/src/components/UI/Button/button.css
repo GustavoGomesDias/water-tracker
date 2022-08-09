@@ -1,0 +1,83 @@
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+
+  animation: showRight 1.5s ease;
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  top: -60px;
+  width: 120px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  background-color: #ed3b65;
+  padding: 0.1rem;
+
+  transition: all 0.3s ease;
+}
+
+.tooltip span::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 80%;
+  margin-left: -5px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ed3b65 transparent transparent transparent;
+}
+
+.input-box:hover .tooltip {
+  visibility: visible;
+}
+
+.input-box .btn {
+  z-index: 1;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  padding: 5px 30px;
+  font-weight: 600;
+  font-size: 2.5rem;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  transition: all 1s;
+
+  width: 150px;
+  height: 70px;
+  cursor: pointer;
+}
+
+.btn span {
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 130px;
+  background-color: #ed3b65;
+  top: 85px;
+  left: 50%;
+  transform: translate(-50%);
+  animation: wave 5s infinite linear;
+  transition: all 1s;
+}
+
+.btn:hover:before {
+  top: 15px;
+}

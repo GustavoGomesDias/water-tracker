@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@types/node": "^18.6.5",
+    "@types/react-icons": "^3.0.0"
+  },
+  "dependencies": {
+    "react-icons": "^4.4.0"
+  }
+}

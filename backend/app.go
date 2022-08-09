@@ -21,8 +21,8 @@ func (a *App) OnStartup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-func (a *App) OnClose() {
-	return a.ctx.Done()
+func (a *App) OnClose(ctx context.Context) {
+	fmt.Printf("Closed!")
 }
 
 // Greet returns a greeting for the given name
