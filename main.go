@@ -17,14 +17,13 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:            "Water Tracker",
-		Width:            1024,
-		Height:           768,
-		Assets:           assets,
-		BackgroundColour: &options.RGBA{R: 0, G: 32, B: 69, A: 1},
-		OnStartup:        app.OnStartup,
-		OnShutdown:       app.OnClose,
-		DisableResize:    true,
+		Title:         "Water Tracker",
+		Width:         1024,
+		Height:        768,
+		Assets:        assets,
+		OnStartup:     app.OnStartup,
+		OnShutdown:    app.OnClose,
+		DisableResize: true,
 		Bind: []interface{}{
 			app,
 		},

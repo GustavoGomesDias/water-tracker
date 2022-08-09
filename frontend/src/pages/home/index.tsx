@@ -15,7 +15,6 @@ export function Home() {
   return (
     <div id="App">
       <Logo />
-      
       <Button handleClick={handleEnterInApp} Icon={ImEnter} tooltipText="Entrar no app" />
     </div>
   )
