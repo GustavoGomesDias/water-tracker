@@ -51,7 +51,7 @@ This animations is created by:
   height: 72px;
   position: relative;
   border: 2px solid #fff;
-  animation: load 1.5s linear alternate;
+  animation: load 1s linear alternate;
   box-shadow: 0 -70px #ed3b65 inset;
 }
 

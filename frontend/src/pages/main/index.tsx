@@ -1,13 +1,16 @@
 import React from 'react';
 import './main.css';
-import { Link } from 'react-router-dom';
-import { Transition } from '@components';
+import { Transition, Back } from '@components';
 
 export const Main = (): JSX.Element => (
   <>
     <Transition />
-    <button>
-      <Link to='/'>Voltar</Link>
-    </button>
+    <div className="main">
+      <Back />
+
+      <div className="tracker">
+        
+      </div>
+    </div>
   </>
 );

@@ -8,7 +8,7 @@ export const Transition = (): JSX.Element => {
     transition?.classList.add('displayNone');
   }
 
-  setTimeout(() => handleOnCloseTransition(), 1500);
+  setTimeout(() => handleOnCloseTransition(), 1000);
 
   return (
     <div className="transition">

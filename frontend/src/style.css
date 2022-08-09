@@ -33,3 +33,11 @@ body {
     height: 100vh;
     text-align: center;
 }
+
+:root {
+    --pink: #ed3b65;
+    --text: #fff;
+    --bg: rgba(0, 0, 0, 0.8);
+    --red: red;
+    --transition: all 300ms;
+}
