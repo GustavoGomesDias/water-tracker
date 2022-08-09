@@ -1,0 +1,76 @@
+/*
+
+This animations is created by:
+  instagram: frontendjoe
+
+*/
+
+
+.transition {
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.displayNone {
+  display: none;
+}
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5rem;
+  background-color: rgba(0, 0, 0, 1);
+  height: 0;
+  width: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.overlay span {
+  font-size: 2rem;
+}
+
+.close {
+  animation: onClose 1s ease;
+}
+
+
+.loader {
+  transform: perspective(140px) rotateX(-45deg);
+  width: 35px;
+  height: 72px;
+  position: relative;
+  border: 2px solid #fff;
+  animation: load 1.5s linear alternate;
+  box-shadow: 0 -70px #ed3b65 inset;
+}
+
+
+@keyframes onClose {
+
+  to {
+    border-radius: 100%;
+    height: 0;
+    width: 0;
+  }
+}
+
+@keyframes load {
+  0% {
+    box-shadow: 0 0 #ed3b65 inset;
+  }
+
+  100% {
+    box-shadow: 0 -70px #ed3b65 inset;
+  }
+}
