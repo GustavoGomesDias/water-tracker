@@ -5,10 +5,11 @@ import { ProviderProps } from './context'
 export interface ToastProps {
   id: number
   text: string
+  type: 'error' | 'success'
 }
 
 export interface ToastContextProps {
-  addToast(text: string): void
+  addToast(text: string, type?: 'error' | 'success'): void
   removeToast(id: number): void
 }
 
@@ -20,10 +21,11 @@ const ToastProvider = ({ children }: ProviderProps) => {
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
   const addToast = useCallback(
-    (text: string) => {
+    (text: string, type?: 'error' | 'success') => {
       setToasts((toasts: ToastProps[]) => [
         ...toasts,
         {
+          type: type ? type : 'success',
           id: id++,
           text
         }
@@ -47,7 +49,7 @@ const ToastProvider = ({ children }: ProviderProps) => {
       }}
     >
       <>
-        {toasts.map((toast) => (<Toast id={toast.id} message={toast.text} key={toast.text + toast.id} />))}
+        {toasts.map((toast) => (<Toast type={toast.type} id={toast.id} message={toast.text} key={toast.text + toast.id} />))}
         {children}
       </>
     </ToastContext.Provider>

@@ -18,10 +18,11 @@ export const Setup = (): JSX.Element => {
 
     if (defaultQuantity <= 0 || alertTime <= 0) {
       handleNotIsLoading();
-      addToast('O objetivo e o alerta tem que ser maior que zero!');
+      addToast('O objetivo e o alerta tem que ser maior que zero!', 'error');
       return;
     }
 
+    addToast('Configuração adicionada com sucesso!');
     SaveTrackerConfig(JSON.stringify({ defaultQuantity, alertTime }));
     handleNotIsLoading();
   }
@@ -42,7 +43,7 @@ export const Setup = (): JSX.Element => {
             value={alertTime} type="number"
             handleOnChange={setAlertTime}
           />
-          <Button content="Salvar" tooltipText="Adicionar drink" type="submit" />
+          <Button content="Salvar" tooltipText="Salvar configurações" type="submit" />
         </form>
       </div>
     </div>

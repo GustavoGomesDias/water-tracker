@@ -3,11 +3,12 @@ import { useToast } from '@hooks';
 import './toast.css';
 
 export interface ToastProps {
+  type: 'error' | 'success'
   id: number
   message: string
 }
 
-export const Toast = ({ id, message }: ToastProps): JSX.Element => {
+export const Toast = ({ id, message, type }: ToastProps): JSX.Element => {
   const { removeToast } = useToast();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export const Toast = ({ id, message }: ToastProps): JSX.Element => {
   }, [id, removeToast]);
 
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${type}`}>
       <p className="content">
         {message}
       </p>

@@ -40,4 +40,5 @@ body {
     --bg: rgba(0, 0, 0, 0.8);
     --red: red;
     --transition: all 300ms;
+    --error: #A90633;
 }
