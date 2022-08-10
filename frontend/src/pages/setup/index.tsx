@@ -1,10 +1,13 @@
-import { ChangeEvent, useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import { Back, Button, Input } from '@components';
 import './setup.css';
-import { AiOutlinePlus } from 'react-icons/ai';
 
 export const Setup = (): JSX.Element => {
   const [defaultQuantity, setDefaultQuantity] = useState<number>(0);
+
+  const handleHistory = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  }
 
   return (
     <div className="main">
@@ -18,25 +21,11 @@ export const Setup = (): JSX.Element => {
             handleOnChange={setDefaultQuantity}
           />
           <Input
-            labelTxt="Quantidade objetivo (em ml)"
+            labelTxt="Alerta de quanto em quanto tempo (minutos)"
             value={defaultQuantity} type="number"
             handleOnChange={setDefaultQuantity}
           />
-          <Input
-            labelTxt="Quantidade objetivo (em ml)"
-            value={defaultQuantity} type="number"
-            handleOnChange={setDefaultQuantity}
-          />
-          <Input
-            labelTxt="Quantidade objetivo (em ml)"
-            value={defaultQuantity} type="number"
-            handleOnChange={setDefaultQuantity}
-          />
-          <Input
-            labelTxt="Quantidade objetivo (em ml)"
-            value={defaultQuantity} type="number"
-            handleOnChange={setDefaultQuantity}
-          />
+          <Button handleClick={handleHistory} content="Salvar" tooltipText="Adicionar drink" />
         </form>
       </div>
     </div>

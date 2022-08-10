@@ -38,11 +38,13 @@
 }
 
 .input-box .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
   border: none;
   background-color: transparent;
   color: #fff;
-  padding: 5px 30px;
   font-weight: 600;
   font-size: 2.5rem;
   border-radius: 50px;
@@ -80,6 +82,14 @@
 
 .btn:hover:before {
   top: 15px;
+}
+
+.btn-content {
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  font-size: 2rem;
+  z-index: 5;
 }
 
 

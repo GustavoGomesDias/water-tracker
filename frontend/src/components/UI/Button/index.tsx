@@ -16,7 +16,8 @@ export const Button = ({ content, tooltipText, Icon, handleClick }: ButtonProps)
       <span>{tooltipText}</span>
     </div>}
     <button className="btn" onClick={(e) => handleClick(e)}>
-      <span>{content && content} {Icon && <Icon />}</span>
+      {content && <p className="btn-content">{content}</p>}
+      {Icon && <span>{<Icon />}</span>}
     </button>
   </div>
 )
