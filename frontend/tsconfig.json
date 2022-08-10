@@ -19,6 +19,7 @@
       "@components": ["src/components/index.ts"],
       "@wails/*": ["wailsjs/*"],
       "@hooks": ["src/hooks/index.ts"],
+      "@backend": ["wailsjs/go/backend/App.d.ts"],
     },
     "esModuleInterop": false
   },

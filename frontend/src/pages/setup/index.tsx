@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { Back, Button, Input } from '@components';
-import { SaveTrackerConfig } from '@wails/go/backend/App';
+import { SaveTrackerConfig } from '@backend';
 import './setup.css';
 import { useLoad, useToast } from '@hooks';
 import { useNavigate } from 'react-router-dom';

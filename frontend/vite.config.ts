@@ -9,6 +9,7 @@ const config = defineConfig({
       { find: '@components', replacement: path.resolve(__dirname, './src/components/index.ts') },
       { find: '@hooks', replacement: path.resolve(__dirname, './src/hooks/index.ts') },
       { find: '@wails', replacement: path.resolve(__dirname, './wailsjs/') },
+      { find: '@backend', replacement: path.resolve(__dirname, './wailsjs/go/backend/App') },
     ]
   }
 })
