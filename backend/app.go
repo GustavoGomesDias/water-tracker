@@ -3,6 +3,7 @@ package backend
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 )
 
 // App struct
@@ -25,12 +26,6 @@ func (a *App) OnClose(ctx context.Context) {
 	fmt.Printf("Closed!")
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
-}
-
-// Greet2 returns a greeting for the given name
-func (a *App) Greet2(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+func (a *App) SaveTrackerConfig(configs string) {
+	_ = ioutil.WriteFile("tracker.json", []byte(configs), 0644)
 }

@@ -24,6 +24,7 @@ func main() {
 		OnStartup:     app.OnStartup,
 		OnShutdown:    app.OnClose,
 		DisableResize: true,
+
 		Bind: []interface{}{
 			app,
 		},

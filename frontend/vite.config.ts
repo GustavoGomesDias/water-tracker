@@ -7,6 +7,8 @@ const config = defineConfig({
   resolve: {
     alias: [
       { find: '@components', replacement: path.resolve(__dirname, './src/components/index.ts') },
+      { find: '@hooks', replacement: path.resolve(__dirname, './src/hooks/index.ts') },
+      { find: '@wails', replacement: path.resolve(__dirname, './wailsjs/') },
     ]
   }
 })

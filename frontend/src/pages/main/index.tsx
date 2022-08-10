@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { BsFillGearFill } from 'react-icons/bs';
 import { BiHistory } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useLoad } from '@hooks';
 
 export const Main = (): JSX.Element => {
   const [percent, setPercent] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const full = 150;
+
+  const { handleIsLoading, handleNotIsLoading } = useLoad();
 
   const navigate = useNavigate()
   const handleHistory = (e: MouseEvent<HTMLButtonElement>) => {
@@ -24,6 +26,7 @@ export const Main = (): JSX.Element => {
 
   useEffect(() => {
     const handleActualResult = () => {
+      handleIsLoading();
       const actualPercent = 25;
   
       const result = full - (full * (actualPercent / 100));
@@ -37,7 +40,7 @@ export const Main = (): JSX.Element => {
       }
 
       setPercent(actualPercent);
-      setIsLoading(false);
+      handleNotIsLoading();
     }
 
     handleActualResult();
@@ -47,7 +50,6 @@ export const Main = (): JSX.Element => {
 
   return (
     <>
-      {isLoading && <Transition />}
       <div className="main">
         <Back path='/' />
         <div className="tracker">
