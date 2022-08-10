@@ -1,11 +1,14 @@
 import { MouseEvent, useEffect, useState } from 'react';
-import './main.css';
-import { Transition, Back, Button } from '@components';
 import { useNavigate } from 'react-router-dom';
 import { BsFillGearFill } from 'react-icons/bs';
 import { BiHistory } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
+
+import { Back, Button } from '@components';
 import { useLoad } from '@hooks';
+import { GetActualQuantity } from '@backend';
+
+import './main.css';
 
 export const Main = (): JSX.Element => {
   const [percent, setPercent] = useState<number>(0);
@@ -25,9 +28,9 @@ export const Main = (): JSX.Element => {
   }
 
   useEffect(() => {
-    const handleActualResult = () => {
+    const handleActualResult = async () => {
       handleIsLoading();
-      const actualPercent = 25;
+      const actualPercent = await GetActualQuantity();
   
       const result = full - (full * (actualPercent / 100));
   
