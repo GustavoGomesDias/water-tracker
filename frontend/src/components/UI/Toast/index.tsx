@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useToast } from '@hooks';
+import './toast.css';
 
 export interface ToastProps {
   id: number
@@ -21,10 +22,10 @@ export const Toast = ({ id, message }: ToastProps): JSX.Element => {
 
   return (
     <div className="wrapper">
-      <span className="time" />
       <p className="content">
         {message}
       </p>
+      <span className="time" />
     </div>
   );
 };

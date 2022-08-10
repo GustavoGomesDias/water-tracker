@@ -2,7 +2,7 @@ import { useState, FormEvent } from 'react';
 import { Back, Button, Input } from '@components';
 import { SaveTrackerConfig } from '@wails/go/backend/App';
 import './setup.css';
-import { useLoad } from '@hooks';
+import { useLoad, useToast } from '@hooks';
 // import { backend } from '@wails/go/models';
 
 export const Setup = (): JSX.Element => {
@@ -10,12 +10,15 @@ export const Setup = (): JSX.Element => {
   const [alertTime, setAlertTime] = useState<number>(0);
 
   const { handleIsLoading, handleNotIsLoading } = useLoad();
+  const { addToast } = useToast();
 
   const handleSubmit = async (e: FormEvent) => {
     handleIsLoading()
     e.preventDefault();
 
-    if (defaultQuantity < 0 || alertTime < 0) {
+    if (defaultQuantity <= 0 || alertTime <= 0) {
+      handleNotIsLoading();
+      addToast('O objetivo e o alerta tem que ser maior que zero!');
       return;
     }
 
