@@ -4,7 +4,7 @@ import { BsFillGearFill } from 'react-icons/bs';
 import { BiHistory } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { Back, Button } from '@components';
+import { AddForm, Back, Button, Input } from '@components';
 import { useLoad } from '@hooks';
 import { GetActualQuantity } from '@backend';
 
@@ -31,13 +31,13 @@ export const Main = (): JSX.Element => {
     const handleActualResult = async () => {
       handleIsLoading();
       const actualPercent = await GetActualQuantity();
-  
+
       const result = full - (full * (actualPercent / 100));
-  
+
       const glass = document.querySelector<HTMLDivElement>('.glass');
 
       console.log(result);
-  
+
       if (glass) {
         glass.style.setProperty('--top', `${result}px`)
       }
@@ -53,6 +53,7 @@ export const Main = (): JSX.Element => {
 
   return (
     <>
+      <AddForm />
       <div className="main">
         <Back path='/' />
         <div className="tracker">
