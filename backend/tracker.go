@@ -15,7 +15,6 @@ func NewTracker(configs string) *Tracker {
 	fmt.Println(configs)
 	tracker := &Tracker{}
 	err := json.Unmarshal([]byte(configs), &tracker)
-	fmt.Println(tracker.ActualQuantity)
 	if err != nil {
 		panic(err)
 	}
