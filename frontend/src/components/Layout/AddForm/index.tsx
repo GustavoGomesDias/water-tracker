@@ -23,7 +23,9 @@ export const AddForm = (): JSX.Element => {
       return;
     }
 
-    if (tracker && (tracker.actualQuantity + value > tracker.defaultQuantity)) {
+    if (tracker && (Number(tracker.actualQuantity )+ Number(value) > Number(tracker.defaultQuantity))) {
+      addToast('Você ja tomou todo o seu objetivo. 😎', 'error');
+      closeForm();
       return;
     }
 

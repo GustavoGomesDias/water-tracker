@@ -34,7 +34,7 @@ const TrackerProvider = ({ children }: ProviderProps): JSX.Element => {
         glass.style.setProperty('--top', `${result}px`)
       }
 
-      if (trackerInfo.actualQuantity) {
+      if (trackerInfo.defaultQuantity) {
         setTracker(trackerInfo);
       }
 
@@ -48,13 +48,14 @@ const TrackerProvider = ({ children }: ProviderProps): JSX.Element => {
   const editActualQuantity = (value: number) => {
     const actualQuantity = parseInt(tracker?.actualQuantity as string);
     const newValue = actualQuantity + Number(value);
-    console.log(typeof actualQuantity);
     if (tracker) {
       setTracker((prevState) => ({
         actualQuantity: String(newValue),
         alertTime: prevState?.alertTime as string,
         defaultQuantity: prevState?.defaultQuantity as string,
       }));
+
+      setPercent((newValue * 100) / Number(tracker.defaultQuantity));
     }
   }
 
