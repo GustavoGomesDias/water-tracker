@@ -1,17 +1,20 @@
-import { FormEvent, MouseEvent, useState } from 'react';
-import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
+import { FormEvent, useState } from 'react';
+import { AiOutlineClose } from "react-icons/ai";
 import { GiSave } from "react-icons/gi";
-import { SetActualQuantity } from '@backend';
 
+import { SetActualQuantity } from '@backend';
 import { Button, Input } from "@components";
+import { useShowAddForm, useToast, useTracker } from '@hooks';
 
 import './addmore.css'
-import { useShowAddForm, useToast } from '@hooks';
 
 export const AddForm = (): JSX.Element => {
   const [value, setValue] = useState<number>(0);
 
   const { addToast } = useToast();
+  const { closeForm } = useShowAddForm();
+  const { editActualQuantity } = useTracker();
+
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -21,10 +24,11 @@ export const AddForm = (): JSX.Element => {
     }
 
     SetActualQuantity(String(value));
-    addToast('Valor adicionado com sucesso!.');
+    editActualQuantity(value);
+    addToast('Valor adicionado com sucesso!');
+    setValue(0);
+    closeForm();
   }
-
-  const { closeForm } = useShowAddForm();
 
   return (
     <div className="add">

@@ -5,6 +5,7 @@ import App from './App'
 import LoadingProvider from './context/LoadingContext'
 import ToastProvider from './context/ToastContext'
 import ShowAddFormProvider from './context/ShowAddFormContext'
+import TrackerProvider from './context/TrackerContext'
 
 const container = document.getElementById('root')
 
@@ -13,11 +14,13 @@ const root = createRoot(container!)
 root.render(
   <React.StrictMode>
     <LoadingProvider>
-      <ShowAddFormProvider>
+      <TrackerProvider>
         <ToastProvider>
-          <App />
+          <ShowAddFormProvider>
+            <App />
+          </ShowAddFormProvider>
         </ToastProvider>
-      </ShowAddFormProvider>
+      </TrackerProvider>
     </LoadingProvider>
   </React.StrictMode>
 )

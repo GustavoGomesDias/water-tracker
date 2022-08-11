@@ -5,19 +5,15 @@ import { BiHistory } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { Back, Button, } from '@components';
-import { useLoad, useShowAddForm } from '@hooks';
-import { GetActualPercent, GetTracker } from '@backend';
-import { backend } from '@wails/go/models';
+import { useShowAddForm, useTracker } from '@hooks';
 
 import './main.css';
 
 export const Main = (): JSX.Element => {
-  const [percent, setPercent] = useState<number>(0);
-  const [trackerInfo, setTrackerInfo] = useState<backend.Tracker>();
+  const { showForm } = useShowAddForm();
+  const { percent, tracker } = useTracker();
   const full = 150;
 
-  const { handleIsLoading, handleNotIsLoading } = useLoad();
-  const { showForm } = useShowAddForm();
 
   const navigate = useNavigate()
   const handleHistory = (e: MouseEvent<HTMLButtonElement>) => {
@@ -31,31 +27,19 @@ export const Main = (): JSX.Element => {
   }
 
   useEffect(() => {
-    const handleGetProperties = async () => {
-      handleIsLoading();
-      const actualPercent = await GetActualPercent();
-      const tracker = await GetTracker();
+    const handleGetProperties = () => {
 
-      const result = full - (full * (actualPercent / 100));
+      const result = full - (full * (percent / 100));
 
       const glass = document.querySelector<HTMLDivElement>('.glass');
 
       if (glass) {
-        console.log('entrou')
         glass.style.setProperty('--top', `${result}px`)
       }
-
-      if (tracker.actualQuantity) {
-        setTrackerInfo(tracker);
-      }
-
-      setPercent(actualPercent);
-      handleNotIsLoading();
     }
 
     handleGetProperties();
   }, []);
-
 
 
   return (
@@ -67,8 +51,8 @@ export const Main = (): JSX.Element => {
             <p className="percent">{percent}%</p>
             <div className="glass" />
             <div className="information">
-              <span>Objetivo: {trackerInfo ? trackerInfo?.defaultQuantity : 0}ml</span>
-              <span>Já tomou: {trackerInfo ? trackerInfo?.actualQuantity : 0}ml</span>
+              <span>Objetivo: {tracker ? tracker?.defaultQuantity : 0}ml</span>
+              <span>Já tomou: {tracker ? tracker?.actualQuantity : 0}ml</span>
             </div>
           </div>
           <div className="options">
