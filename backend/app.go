@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"strconv"
 )
 
 // App struct
@@ -31,16 +32,45 @@ func (a *App) SaveTrackerConfig(configs string) {
 	_ = ioutil.WriteFile("tracker.json", []byte(configs), 0644)
 }
 
-func (a *App) GetActualQuantity() uint64 {
+func (a *App) GetActualQuantity() json.Number {
 	byteValue, err := ioutil.ReadFile("tracker.json")
+
+	if err != nil {
+		return "0"
+	}
+
+	tracker := Tracker{}
+
+	json.Unmarshal(byteValue, &tracker)
+
+	return tracker.ActualQuantity
+}
+
+func (a *App) SetActualQuantity(value string) {
+	file, _ := ioutil.ReadFile("tracker.json")
+
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	tracker := Tracker{}
+
+	fmt.Println("File: ", string([]byte(file)))
+
+	err := json.Unmarshal([]byte(file), &tracker)
 
 	if err != nil {
 		panic(err)
 	}
 
-	var tracker Tracker
+	fmt.Println(tracker)
 
-	json.Unmarshal(byteValue, &tracker)
+	trackerActualValue, _ := strconv.Atoi(tracker.ActualQuantity.String())
+	addVelue, _ := strconv.Atoi(value)
 
-	return tracker.actualQuantity
+	tracker.ActualQuantity = json.Number(strconv.Itoa(trackerActualValue + addVelue))
+
+	jsonData, _ := json.Marshal(tracker)
+
+	_ = ioutil.WriteFile("tracker.json", jsonData, 0644)
 }

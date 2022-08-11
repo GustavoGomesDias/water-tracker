@@ -9,3 +9,7 @@ export function GetActualQuantity() {
 export function SaveTrackerConfig(arg1) {
   return window['go']['backend']['App']['SaveTrackerConfig'](arg1);
 }
+
+export function SetActualQuantity(arg1) {
+  return window['go']['backend']['App']['SetActualQuantity'](arg1);
+}

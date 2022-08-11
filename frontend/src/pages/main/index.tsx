@@ -5,7 +5,7 @@ import { BiHistory } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { AddForm, Back, Button, Input } from '@components';
-import { useLoad } from '@hooks';
+import { useLoad, useShowAddForm } from '@hooks';
 import { GetActualQuantity } from '@backend';
 
 import './main.css';
@@ -15,6 +15,7 @@ export const Main = (): JSX.Element => {
   const full = 150;
 
   const { handleIsLoading, handleNotIsLoading } = useLoad();
+  const { showForm } = useShowAddForm();
 
   const navigate = useNavigate()
   const handleHistory = (e: MouseEvent<HTMLButtonElement>) => {
@@ -53,7 +54,6 @@ export const Main = (): JSX.Element => {
 
   return (
     <>
-      <AddForm />
       <div className="main">
         <Back path='/' />
         <div className="tracker">
@@ -64,7 +64,7 @@ export const Main = (): JSX.Element => {
           <div className="options">
             <Button handleClick={handleSetup} Icon={BsFillGearFill} tooltipText="Configurar o tracker" />
             <Button handleClick={handleHistory} Icon={BiHistory} tooltipText="Ver histórico" />
-            <Button handleClick={handleHistory} Icon={AiOutlinePlus} tooltipText="Adicionar drink" />
+            <Button handleClick={showForm} Icon={AiOutlinePlus} tooltipText="Adicionar drink" />
           </div>
         </div>
       </div>
