@@ -7,6 +7,7 @@ import { backend } from '@wails/go/models';
 
 export interface TrackerContextProps {
   editActualQuantity(value: number): void
+  getTrackerConfig(): Promise<void>
   percent: number
   tracker: backend.Tracker | undefined
 }
@@ -59,9 +60,17 @@ const TrackerProvider = ({ children }: ProviderProps): JSX.Element => {
     }
   }
 
+  const getTrackerConfig = async (): Promise<void> => {
+    const trackerInfo = await GetTracker();
+    if (trackerInfo.defaultQuantity) {
+      setTracker(trackerInfo);
+    }
+  }
+
   return (
     <TrackerContext.Provider value={{
       editActualQuantity,
+      getTrackerConfig,
       tracker,
       percent
     }}>

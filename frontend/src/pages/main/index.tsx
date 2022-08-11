@@ -8,14 +8,16 @@ import { Back, Button, } from '@components';
 import { useShowAddForm, useTracker } from '@hooks';
 
 import './main.css';
+import { backend } from '@wails/go/models';
 
 export const Main = (): JSX.Element => {
+  const [mainTracker, setMainTracker] = useState<backend.Tracker>();
   const { showForm } = useShowAddForm();
-  const { percent, tracker } = useTracker();
+  const { percent, getTrackerConfig, tracker } = useTracker();
   const full = 150;
 
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleHistory = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate('/history');
@@ -25,6 +27,19 @@ export const Main = (): JSX.Element => {
     e.preventDefault();
     navigate('/setup');
   }
+
+  useEffect(() => {
+    const handleSetTracker = async () => {
+      await getTrackerConfig()
+      if (tracker === undefined) {
+        navigate('/setup');
+      }
+
+      setMainTracker(tracker);
+    }
+
+    handleSetTracker();
+  }, [tracker]);
 
   useEffect(() => {
     const handleGetProperties = () => {
@@ -51,8 +66,8 @@ export const Main = (): JSX.Element => {
             <p className="percent">{percent}%</p>
             <div className="glass" />
             <div className="information">
-              <span>Objetivo: {tracker ? tracker?.defaultQuantity : 0}ml</span>
-              <span>Já tomou: {tracker ? tracker?.actualQuantity : 0}ml</span>
+              <span>Objetivo: {mainTracker ? mainTracker?.defaultQuantity : 0}ml</span>
+              {/* <span>Já tomou: {mainTracker ? mainTracker?.actualQuantity : 0}ml</span> */}
             </div>
           </div>
           <div className="options">

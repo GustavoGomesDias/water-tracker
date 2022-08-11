@@ -2,7 +2,7 @@ import { useState, FormEvent } from 'react';
 import { Back, Button, Input } from '@components';
 import { SaveTrackerConfig } from '@backend';
 import './setup.css';
-import { useLoad, useToast } from '@hooks';
+import { useLoad, useToast, useTracker } from '@hooks';
 import { useNavigate } from 'react-router-dom';
 // import { backend } from '@wails/go/models';
 
@@ -12,6 +12,7 @@ export const Setup = (): JSX.Element => {
 
   const { handleIsLoading, handleNotIsLoading } = useLoad();
   const { addToast } = useToast();
+  const { getTrackerConfig } = useTracker();
   const navigate  = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
@@ -25,6 +26,7 @@ export const Setup = (): JSX.Element => {
     }
 
     SaveTrackerConfig(JSON.stringify({ defaultQuantity, alertTime, actualQuantity: 0 }));
+    await getTrackerConfig();
     setDefaultQuantity(0);
     setAlertTime(0)
     addToast('Configuração adicionada com sucesso!');

@@ -15,8 +15,7 @@ export const AddForm = (): JSX.Element => {
   const { closeForm } = useShowAddForm();
   const { editActualQuantity, tracker } = useTracker();
 
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (value <= 0) {
       addToast('Valor precisa ser maior que 0.', 'error');

@@ -1,6 +1,6 @@
 {
   "name": "w-tracker",
-  "outputfilename": "w-tracker",
+  "outputfilename": "WaterForHealth",
   "frontend:install": "npm install",
   "frontend:build": "npm run build",
   "frontend:dev:watcher": "npm run dev",
