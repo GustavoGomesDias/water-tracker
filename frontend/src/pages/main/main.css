@@ -39,7 +39,7 @@
   width: 320px;
   height: 320px;
   border-radius: 130px;
-  background-color: #ed3b65;
+  background-color: var(--pink);
   top: var(--top);
   left: 50%;
   transform: translate(-50%);
@@ -60,6 +60,15 @@
   display: flex;
   justify-content: space-evenly;
   width: 80%;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  font-size: 1.8rem;
+  color: var(--pink);
+  font-weight: 700;
 }
 
 @keyframes wave {

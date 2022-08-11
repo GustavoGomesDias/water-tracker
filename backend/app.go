@@ -32,18 +32,23 @@ func (a *App) SaveTrackerConfig(configs string) {
 	_ = ioutil.WriteFile("tracker.json", []byte(configs), 0644)
 }
 
-func (a *App) GetActualQuantity() json.Number {
-	byteValue, err := ioutil.ReadFile("tracker.json")
+func (a *App) GetActualPercent() int {
+	file, err := ioutil.ReadFile("tracker.json")
 
 	if err != nil {
-		return "0"
+		return 0
 	}
 
 	tracker := Tracker{}
 
-	json.Unmarshal(byteValue, &tracker)
+	json.Unmarshal([]byte(file), &tracker)
 
-	return tracker.ActualQuantity
+	actQ, _ := strconv.Atoi(tracker.ActualQuantity.String())
+	dfQ, _ := strconv.Atoi(tracker.DefaultQuantity.String())
+
+	percent := (actQ * 100) / dfQ
+
+	return percent
 }
 
 func (a *App) SetActualQuantity(value string) {
@@ -54,8 +59,6 @@ func (a *App) SetActualQuantity(value string) {
 	// }
 
 	tracker := Tracker{}
-
-	fmt.Println("File: ", string([]byte(file)))
 
 	err := json.Unmarshal([]byte(file), &tracker)
 
@@ -73,4 +76,18 @@ func (a *App) SetActualQuantity(value string) {
 	jsonData, _ := json.Marshal(tracker)
 
 	_ = ioutil.WriteFile("tracker.json", jsonData, 0644)
+}
+
+func (a *App) GetTracker() Tracker {
+	file, err := ioutil.ReadFile("tracker.json")
+
+	if err != nil {
+		return Tracker{}
+	}
+
+	tracker := Tracker{}
+
+	json.Unmarshal([]byte(file), &tracker)
+
+	return tracker
 }

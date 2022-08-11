@@ -4,14 +4,16 @@ import { BsFillGearFill } from 'react-icons/bs';
 import { BiHistory } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { AddForm, Back, Button, Input } from '@components';
+import { Back, Button, } from '@components';
 import { useLoad, useShowAddForm } from '@hooks';
-import { GetActualQuantity } from '@backend';
+import { GetActualPercent, GetTracker } from '@backend';
+import { backend } from '@wails/go/models';
 
 import './main.css';
 
 export const Main = (): JSX.Element => {
   const [percent, setPercent] = useState<number>(0);
+  const [trackerInfo, setTrackerInfo] = useState<backend.Tracker>();
   const full = 150;
 
   const { handleIsLoading, handleNotIsLoading } = useLoad();
@@ -29,25 +31,29 @@ export const Main = (): JSX.Element => {
   }
 
   useEffect(() => {
-    const handleActualResult = async () => {
+    const handleGetProperties = async () => {
       handleIsLoading();
-      const actualPercent = await GetActualQuantity();
+      const actualPercent = await GetActualPercent();
+      const tracker = await GetTracker();
 
       const result = full - (full * (actualPercent / 100));
 
       const glass = document.querySelector<HTMLDivElement>('.glass');
 
-      console.log(result);
-
       if (glass) {
+        console.log('entrou')
         glass.style.setProperty('--top', `${result}px`)
+      }
+
+      if (tracker.actualQuantity) {
+        setTrackerInfo(tracker);
       }
 
       setPercent(actualPercent);
       handleNotIsLoading();
     }
 
-    handleActualResult();
+    handleGetProperties();
   }, []);
 
 
@@ -60,6 +66,10 @@ export const Main = (): JSX.Element => {
           <div className="count">
             <p className="percent">{percent}%</p>
             <div className="glass" />
+            <div className="information">
+              <span>Objetivo: {trackerInfo ? trackerInfo?.defaultQuantity : 0}ml</span>
+              <span>Já tomou: {trackerInfo ? trackerInfo?.actualQuantity : 0}ml</span>
+            </div>
           </div>
           <div className="options">
             <Button handleClick={handleSetup} Icon={BsFillGearFill} tooltipText="Configurar o tracker" />
