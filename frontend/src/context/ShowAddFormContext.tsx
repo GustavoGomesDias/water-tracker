@@ -14,7 +14,6 @@ const ShowAddFormProvider = ({ children }: ProviderProps): JSX.Element => {
 
   const showForm = useCallback(
     () => {
-      console.log('show');
       setIsShowForm(true)
     },
     [setIsShowForm]

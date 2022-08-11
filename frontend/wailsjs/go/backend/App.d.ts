@@ -4,6 +4,8 @@ import {backend} from '../models';
 
 export function GetActualPercent():Promise<number>;
 
+export function GetAppHistoryWithPage(arg1:number):Promise<Array<backend.History>>;
+
 export function GetTracker():Promise<backend.Tracker>;
 
 export function SaveTrackerConfig(arg1:string):void;

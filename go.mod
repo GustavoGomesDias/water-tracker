@@ -1,4 +1,4 @@
-module changeme
+module w-tracker
 
 go 1.17
 

@@ -6,6 +6,10 @@ export function GetActualPercent() {
   return window['go']['backend']['App']['GetActualPercent']();
 }
 
+export function GetAppHistoryWithPage(arg1) {
+  return window['go']['backend']['App']['GetAppHistoryWithPage'](arg1);
+}
+
 export function GetTracker() {
   return window['go']['backend']['App']['GetTracker']();
 }

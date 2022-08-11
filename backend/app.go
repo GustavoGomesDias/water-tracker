@@ -30,6 +30,7 @@ func (a *App) OnClose(ctx context.Context) {
 
 func (a *App) SaveTrackerConfig(configs string) {
 	_ = ioutil.WriteFile("tracker.json", []byte(configs), 0644)
+	SaveHistory("Set Configuration")
 }
 
 func (a *App) GetActualPercent() int {
@@ -66,7 +67,14 @@ func (a *App) SetActualQuantity(value string) {
 		panic(err)
 	}
 
-	fmt.Println(tracker)
+	var myTracker map[string]interface{}
+
+	json.Unmarshal([]byte(file), &myTracker)
+	_, ok := myTracker["DefaultQuantity"]
+
+	if !ok {
+		return
+	}
 
 	trackerActualValue, _ := strconv.Atoi(tracker.ActualQuantity.String())
 	addVelue, _ := strconv.Atoi(value)
@@ -76,6 +84,7 @@ func (a *App) SetActualQuantity(value string) {
 	jsonData, _ := json.Marshal(tracker)
 
 	_ = ioutil.WriteFile("tracker.json", jsonData, 0644)
+	SaveHistory("Add Value")
 }
 
 func (a *App) GetTracker() Tracker {
@@ -90,4 +99,10 @@ func (a *App) GetTracker() Tracker {
 	json.Unmarshal([]byte(file), &tracker)
 
 	return tracker
+}
+
+func (a *App) GetAppHistoryWithPage(page int) []History {
+	historyNode := GetHistoryNode()
+
+	return historyNode.GetHistoryByPage(page)
 }
