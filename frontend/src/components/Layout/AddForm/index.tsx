@@ -13,13 +13,17 @@ export const AddForm = (): JSX.Element => {
 
   const { addToast } = useToast();
   const { closeForm } = useShowAddForm();
-  const { editActualQuantity } = useTracker();
+  const { editActualQuantity, tracker } = useTracker();
 
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (value <= 0) {
       addToast('Valor precisa ser maior que 0.', 'error');
+      return;
+    }
+
+    if (tracker && (tracker.actualQuantity + value > tracker.defaultQuantity)) {
       return;
     }
 
