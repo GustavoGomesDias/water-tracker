@@ -14,6 +14,9 @@ Ele conta com:
 - Possibilidade de resetar as configurações;
 - Trackear como vai sendo sua vida com a água;
 
+O que eu pretendo adicionar no futuro
+- Existe uma parte onde você pode colocar alarme, mas eu não adicionei ela ainda (não sei nem por onde que começa a fazer)
+
 ## Tecnologias usadas
 - [Wails](https://wails.io/), que é um frame Golang para o backend
 - React, Vite e TypeScript para o frontend
