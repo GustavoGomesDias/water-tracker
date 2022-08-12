@@ -8,12 +8,10 @@ import { Back, Button, } from '@components';
 import { useShowAddForm, useTracker } from '@hooks';
 
 import './main.css';
-import { backend } from '@wails/go/models';
 
 export const Main = (): JSX.Element => {
-  const [mainTracker, setMainTracker] = useState<backend.Tracker>();
   const { showForm } = useShowAddForm();
-  const { percent, getTrackerConfig, tracker } = useTracker();
+  const { percent, tracker } = useTracker();
   const full = 150;
 
 
@@ -29,22 +27,16 @@ export const Main = (): JSX.Element => {
   }
 
   useEffect(() => {
-    const handleSetTracker = async () => {
-      await getTrackerConfig()
-      if (tracker === undefined) {
-        navigate('/setup');
-      }
-
-      setMainTracker(tracker);
+    if (tracker === undefined) {
+      navigate('/setup');
     }
-
-    handleSetTracker();
   }, [tracker]);
 
   useEffect(() => {
     const handleGetProperties = () => {
 
       const result = full - (full * (percent / 100));
+      console.log(result);
 
       const glass = document.querySelector<HTMLDivElement>('.glass');
 
@@ -54,7 +46,7 @@ export const Main = (): JSX.Element => {
     }
 
     handleGetProperties();
-  }, []);
+  }, [percent]);
 
 
   return (
@@ -66,8 +58,8 @@ export const Main = (): JSX.Element => {
             <p className="percent">{percent}%</p>
             <div className="glass" />
             <div className="information">
-              <span>Objetivo: {mainTracker ? mainTracker?.defaultQuantity : 0}ml</span>
-              {/* <span>Já tomou: {mainTracker ? mainTracker?.actualQuantity : 0}ml</span> */}
+              <span>Objetivo: {tracker ? tracker?.defaultQuantity : 0}ml</span>
+              <span>Já tomou: {tracker ? tracker?.actualQuantity : 0}ml</span>
             </div>
           </div>
           <div className="options">

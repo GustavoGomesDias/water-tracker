@@ -26,11 +26,11 @@ export const Setup = (): JSX.Element => {
     }
 
     SaveTrackerConfig(JSON.stringify({ defaultQuantity, alertTime, actualQuantity: 0 }));
-    await getTrackerConfig();
+    setTimeout(async () => await getTrackerConfig(), 1000)
     setDefaultQuantity(0);
     setAlertTime(0)
-    addToast('Configuração adicionada com sucesso!');
     handleNotIsLoading();
+    addToast('Configuração adicionada com sucesso!');
     navigate('/main');
   }
 

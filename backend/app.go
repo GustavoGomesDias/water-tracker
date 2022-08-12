@@ -67,15 +67,6 @@ func (a *App) SetActualQuantity(value string) {
 		panic(err)
 	}
 
-	var myTracker map[string]interface{}
-
-	json.Unmarshal([]byte(file), &myTracker)
-	_, ok := myTracker["DefaultQuantity"]
-
-	if !ok {
-		return
-	}
-
 	trackerActualValue, _ := strconv.Atoi(tracker.ActualQuantity.String())
 	addVelue, _ := strconv.Atoi(value)
 
@@ -86,6 +77,8 @@ func (a *App) SetActualQuantity(value string) {
 	_ = ioutil.WriteFile("tracker.json", jsonData, 0644)
 	SaveHistory("Add Value")
 }
+
+var t bool = false
 
 func (a *App) GetTracker() Tracker {
 	file, err := ioutil.ReadFile("tracker.json")

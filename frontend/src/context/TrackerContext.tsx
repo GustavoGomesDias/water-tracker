@@ -62,7 +62,9 @@ const TrackerProvider = ({ children }: ProviderProps): JSX.Element => {
 
   const getTrackerConfig = async (): Promise<void> => {
     const trackerInfo = await GetTracker();
+    console.log(trackerInfo);
     if (trackerInfo.defaultQuantity) {
+      console.log('entrou');
       setTracker(trackerInfo);
     }
   }
