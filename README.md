@@ -19,7 +19,11 @@ O que eu pretendo adicionar no futuro
 
 ## Tecnologias usadas
 - [Wails](https://wails.io/), que é um frame Golang para o backend
-- React, Vite e TypeScript para o frontend
+- React
+- Vite
+- TypeScript
+- React Router Dom (v6)
+- React Icons
 
 ## Como rodar o projeto:
 Primeiro de tudo, você vai precisar ter o Go instalado no seu PC e seguir o passo-a-passo para baixar APENAS o wails (encontre ele [aqui](https://wails.io/docs/gettingstarted/installation)).
